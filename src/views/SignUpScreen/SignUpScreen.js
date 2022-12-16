@@ -22,6 +22,14 @@ const SignUpScreen = () => {
         console.warn('Sign up?');
     };
 
+    const onTermsPressed = () => {
+        console.warn('onTermsPressed');
+    };
+
+    const onPolicyPressed = () => {
+        console.warn('onPolicyPressed');
+    };
+
   return (
     <View style={styles.root}>
       <Text style={styles.title}>Create una cuenta</Text>
@@ -57,8 +65,8 @@ const SignUpScreen = () => {
 
     <Text style={styles.text}>
         Al inscribirte, aceptas nuestros
-        <Text style={styles.link}>términos y condiciones</Text> y la
-        <Text style={styles.link}>Política de privacidad de Raffles</Text>
+        <Text style={styles.link} onPress={onTermsPressed}> términos y condiciones</Text> y la
+        <Text style={styles.link} onPress={onPolicyPressed}> Política de privacidad de Raffles</Text>
     </Text>
 
     <CustomButton
@@ -83,14 +91,12 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     text: {
-        width: 200,
-        maxWidth: 300,
+        color: 'gray',
+        marginVertical: 10,
         maxHeight: 200,
     },
     link: {
-        width: 200,
-        maxWidth: 300,
-        maxHeight: 200,
+        color: '#FDB075',
     },
 });
 export default SignUpScreen;

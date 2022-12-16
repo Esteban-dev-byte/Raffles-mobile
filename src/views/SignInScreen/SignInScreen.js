@@ -4,6 +4,8 @@ import {View, Image, StyleSheet, useWindowDimensions} from 'react-native';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import Logo from './../../../assets/images/Logo.png';
+import { useNavigation } from '@react-navigation/native';
+import Navigation from '../HomeScreen';
 
 
 const SignInScreen = () => {
@@ -11,9 +13,11 @@ const SignInScreen = () => {
     const [password, setPassword] = useState('');
 
     const {height} = useWindowDimensions();
+    const navigation = useNavigation();
 
     const onSignInPressed = () => {
         console.warn('Sign in');
+        navigation.navigate('Home');
     };
 
     const onForgotPasswordPressed = () => {
@@ -22,6 +26,7 @@ const SignInScreen = () => {
 
     const onSignUpPressed = () => {
         console.warn('Sign up?');
+        navigation.navigate('SignUp');
     };
 
   return (
