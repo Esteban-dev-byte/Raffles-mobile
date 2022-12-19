@@ -12,10 +12,49 @@ import HomeScreen from '../views/HomeScreen';
 const Navigation = () => {
   return (
     <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name='SignIn' component={SignInScreen} />
-            <Stack.Screen name='SignUp' component={SignUpScreen} />
-            <Stack.Screen name='Home' component={HomeScreen} />
+        <Stack.Navigator screenOptions={{headerShown: true}}>
+            <Stack.Screen
+            name="SignIn"
+            component={SignInScreen}
+            options={{
+                title: '',
+                headerStyle: {
+                  backgroundColor: '#3B71F3',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            />
+            <Stack.Screen
+            name="SignUp"
+            component={SignUpScreen}
+            options={{
+                title: '',
+                headerStyle: {
+                  backgroundColor: '#3B71F3',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            />
+            <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+                title: '',
+                headerStyle: {
+                  backgroundColor: '#3B71F3',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            />
         </Stack.Navigator>
     </NavigationContainer>
   );

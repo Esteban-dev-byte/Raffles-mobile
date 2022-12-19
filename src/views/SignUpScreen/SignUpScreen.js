@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import {View, Text, StyleSheet, useWindowDimensions} from 'react-native';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 
 const SignUpScreen = () => {
@@ -11,15 +12,17 @@ const SignUpScreen = () => {
     const [email, setEmail] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
 
-    const {height} = useWindowDimensions();
+    const navigation = useNavigation();
 
     const onRegisterPressed = () => {
         console.warn('onRegisterPressed');
     };
 
 
-    const onSignUpPressed = () => {
+    const onSignInPressed = () => {
         console.warn('Sign up?');
+        navigation.navigate('SignIn');
+
     };
 
     const onTermsPressed = () => {
@@ -71,7 +74,7 @@ const SignUpScreen = () => {
 
     <CustomButton
     text="Tienes una cuenta? Inicia sesion"
-    onPress={onSignUpPressed}
+    onPress={onSignInPressed}
     type="TERTIARY"
     />
 

@@ -5,7 +5,7 @@ import CustomInput from '../../components/CustomInput/CustomInput';
 import CustomButton from '../../components/CustomButton/CustomButton';
 import Logo from './../../../assets/images/Logo.png';
 import { useNavigation } from '@react-navigation/native';
-import Navigation from '../HomeScreen';
+
 
 
 const SignInScreen = () => {
@@ -17,6 +17,10 @@ const SignInScreen = () => {
 
     const onSignInPressed = () => {
         console.warn('Sign in');
+        fetch('https://raw.githubusercontent.com/adhithiravi/React-Hooks-Examples/master/testAPI.json')
+      .then((response) => response.json())
+      .then((json) => console.log(json))
+      .catch((error) => console.error(error));
         navigation.navigate('Home');
     };
 
@@ -79,6 +83,9 @@ const styles = StyleSheet.create({
         width: 200,
         maxWidth: 300,
         maxHeight: 200,
+        borderRadius: 150 / 2,
+        borderWidth: 3,
+        borderColor: '#3B71F3',
     },
 });
 export default SignInScreen;
