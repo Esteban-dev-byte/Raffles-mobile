@@ -6,8 +6,6 @@ import CustomButton from '../../components/CustomButton';
 import Logo from './../../../assets/images/Logo.png';
 import { useNavigation } from '@react-navigation/native';
 
-
-
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -95,7 +93,7 @@ const styles = StyleSheet.create({
         maxHeight: 200,
         borderRadius: 150 / 2,
         borderWidth: 2,
-        borderColor: '#996515',
+        borderColor: '#FF0000',
     },
 });
 export default SignInScreen;
