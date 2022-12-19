@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import {View, Image, StyleSheet, useWindowDimensions} from 'react-native';
-import CustomInput from '../../components/CustomInput/CustomInput';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import CustomInput from '../../components/CustomInput';
+import CustomButton from '../../components/CustomButton';
 import Logo from './../../../assets/images/Logo.png';
 import { useNavigation } from '@react-navigation/native';
 
@@ -17,11 +17,19 @@ const SignInScreen = () => {
 
     const onSignInPressed = () => {
         console.warn('Sign in');
-        fetch('https://raw.githubusercontent.com/adhithiravi/React-Hooks-Examples/master/testAPI.json')
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password}),
+        };
+
+        fetch('http://192.168.1.3:8080/generate-token', requestOptions)
       .then((response) => response.json())
-      .then((json) => console.log(json))
-      .catch((error) => console.error(error));
+      .then((json) => {
+        if (json.token) {
         navigation.navigate('Home');
+      }})
+      .catch((error) => console.error(error));
     };
 
     const onForgotPasswordPressed = () => {
