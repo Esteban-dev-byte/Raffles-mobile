@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import {View, Image, StyleSheet, useWindowDimensions} from 'react-native';
+import {View, Image, StyleSheet, useWindowDimensions, ToastAndroid} from 'react-native';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from './../../../assets/images/Logo.png';
@@ -11,24 +11,27 @@ import { useNavigation } from '@react-navigation/native';
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [token, setToken] = useState('');
 
     const {height} = useWindowDimensions();
     const navigation = useNavigation();
 
     const onSignInPressed = () => {
-        console.warn('Sign in');
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password}),
         };
-
         fetch('http://192.168.1.3:8080/generate-token', requestOptions)
       .then((response) => response.json())
       .then((json) => {
         if (json.token) {
-        navigation.navigate('Home');
-      }})
+          setToken(json.token);
+        navigation.navigate('Home', {token: token});
+        } else if (json.error){
+          ToastAndroid.show(json.message, ToastAndroid.SHORT);
+        }
+      })
       .catch((error) => console.error(error));
     };
 
@@ -37,7 +40,6 @@ const SignInScreen = () => {
     };
 
     const onSignUpPressed = () => {
-        console.warn('Sign up?');
         navigation.navigate('SignUp');
     };
 
@@ -49,7 +51,7 @@ const SignInScreen = () => {
       />
 
       <CustomInput
-      placeholder="Username"
+      placeholder="Nombre de usuario"
       value={username}
       setValue={setUsername}
       />
@@ -61,19 +63,19 @@ const SignInScreen = () => {
       />
 
     <CustomButton
-    text="Inicia sesion"
+    text="Inicia sesión"
     onPress={onSignInPressed}
     type="PRIMARY"
     />
 
     <CustomButton
-    text="Olvidaste tu contraseña?"
+    text="¿Olvidaste tu contraseña?"
     onPress={onForgotPasswordPressed}
     type="TERTIARY"
     />
 
     <CustomButton
-    text="No tienes una cuenta? Create una"
+    text="¿No tienes una cuenta? Create una"
     onPress={onSignUpPressed}
     type="TERTIARY"
     />
@@ -92,8 +94,8 @@ const styles = StyleSheet.create({
         maxWidth: 300,
         maxHeight: 200,
         borderRadius: 150 / 2,
-        borderWidth: 3,
-        borderColor: '#3B71F3',
+        borderWidth: 2,
+        borderColor: '#996515',
     },
 });
 export default SignInScreen;

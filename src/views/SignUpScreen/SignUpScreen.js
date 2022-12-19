@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const SignUpScreen = () => {
+    const [name, setName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -15,12 +17,22 @@ const SignUpScreen = () => {
     const navigation = useNavigation();
 
     const onRegisterPressed = () => {
-        console.warn('onRegisterPressed');
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${json.token}` },
+            body: JSON.stringify({ name, lastName, username, password, email}),
+        };
+        fetch('http://192.168.1.3:8080/users/', requestOptions)
+            .then((response) => response.json())
+            .then((json1) => {
+            console.log(json1);
+            navigation.navigate('SignIn');
+        })
+        .catch((error) => console.error(error));
     };
 
 
     const onSignInPressed = () => {
-        console.warn('Sign up?');
         navigation.navigate('SignIn');
 
     };
@@ -38,7 +50,17 @@ const SignUpScreen = () => {
       <Text style={styles.title}>Create una cuenta</Text>
 
       <CustomInput
-      placeholder="Nombre completo"
+      placeholder="Nombres"
+      value={name}
+      setValue={setName}
+      />
+      <CustomInput
+      placeholder="Apellidos"
+      value={lastName}
+      setValue={setLastName}
+      />
+      <CustomInput
+      placeholder="Nombre de usuario"
       value={username}
       setValue={setUsername}
       />
