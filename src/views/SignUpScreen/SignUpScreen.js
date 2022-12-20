@@ -47,7 +47,7 @@ const SignUpScreen = () => {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.title}>Create una cuenta</Text>
+      <Text style={styles.title}>Créate una cuenta</Text>
 
       <CustomInput
       placeholder="Nombres"
@@ -95,7 +95,7 @@ const SignUpScreen = () => {
     </Text>
 
     <CustomButton
-    text="Tienes una cuenta? Inicia sesion"
+    text="¿Tienes una cuenta? Inicia sesión"
     onPress={onSignInPressed}
     type="TERTIARY"
     />

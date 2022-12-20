@@ -5,11 +5,13 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import Logo from './../../../assets/images/Logo.png';
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../slices/NavSlice';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [token, setToken] = useState('');
+    const dispatch = useDispatch();
 
     const {height} = useWindowDimensions();
     const navigation = useNavigation();
@@ -24,8 +26,8 @@ const SignInScreen = () => {
       .then((response) => response.json())
       .then((json) => {
         if (json.token) {
-          setToken(json.token);
-        navigation.navigate('Home', {token: token});
+          dispatch(setToken(json.token));
+          navigation.navigate('Home');
         } else if (json.error){
           ToastAndroid.show(json.message, ToastAndroid.SHORT);
         }
@@ -73,7 +75,7 @@ const SignInScreen = () => {
     />
 
     <CustomButton
-    text="¿No tienes una cuenta? Create una"
+    text="¿No tienes una cuenta? Créate una"
     onPress={onSignUpPressed}
     type="TERTIARY"
     />
