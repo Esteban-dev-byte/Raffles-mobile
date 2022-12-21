@@ -19,10 +19,10 @@ const SignUpScreen = () => {
     const onRegisterPressed = () => {
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${json.token}` },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, lastName, username, password, email}),
         };
-        fetch('http://192.168.1.3:8080/users/', requestOptions)
+        fetch('http://192.168.1.7:8080/users/', requestOptions)
             .then((response) => response.json())
             .then((json1) => {
             console.log(json1);
