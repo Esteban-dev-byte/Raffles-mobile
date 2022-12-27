@@ -7,7 +7,6 @@ import Logo from './../../../assets/images/Logo.png';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../slices/NavSlice';
-import  Icon from 'react-native-vector-icons/MaterialIcons';
 
 const SignInScreen = () => {
     const [username, setUsername] = useState('');
@@ -23,7 +22,7 @@ const SignInScreen = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password}),
         };
-        fetch('http://192.168.1.7:8080/generate-token', requestOptions)
+        fetch('http://192.168.1.6:8080/generate-token', requestOptions)
       .then((response) => response.json())
       .then((json) => {
         if (json.token) {
@@ -50,7 +49,6 @@ const SignInScreen = () => {
       source={Logo}
       style={[styles.logo, {height: height * 0.3}]}
       />
-        <Icon name={'keyboard-arrow-right'} color="black" size={25} style={{ marginLeft: 5, marginRight: 15, borderWidth: 5}} />
       <CustomInput
       placeholder="Nombre de usuario"
       value={username}

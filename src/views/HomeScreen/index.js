@@ -1,12 +1,19 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Tabbar from "../../components/Tabbar";
+import { View, StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import SignInScreen from '../SignInScreen/SignInScreen';
+import SignUpScreen from '../SignUpScreen/SignUpScreen';
+
+const Tab = createBottomTabNavigator();
 
 const Navigation = () => {
   return (
     <View style={styles.container}>
-      <Tabbar />
+      <Tab.Navigator>
+        <Tab.Screen name="Productos" component={SignInScreen} />
+        <Tab.Screen name="Perfil" component={SignUpScreen} />
+      </Tab.Navigator>
     </View>
   );
 };
