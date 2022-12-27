@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SignInScreen from '../SignInScreen/SignInScreen';
 import SignUpScreen from '../SignUpScreen/SignUpScreen';
+import ProductScreen from '../ProductScreen/ProductScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,7 +12,7 @@ const Navigation = () => {
   return (
     <View style={styles.container}>
       <Tab.Navigator>
-        <Tab.Screen name="Productos" component={SignInScreen} />
+        <Tab.Screen name="Productos" component={ProductScreen} />
         <Tab.Screen name="Perfil" component={SignUpScreen} />
       </Tab.Navigator>
     </View>
