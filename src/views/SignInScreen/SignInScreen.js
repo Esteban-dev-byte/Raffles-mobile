@@ -22,7 +22,7 @@ const SignInScreen = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password}),
         };
-        fetch('http://192.168.1.6:8080/generate-token', requestOptions)
+        fetch('http://192.168.1.172:8080/generate-token', requestOptions)
       .then((response) => response.json())
       .then((json) => {
         if (json.token) {
